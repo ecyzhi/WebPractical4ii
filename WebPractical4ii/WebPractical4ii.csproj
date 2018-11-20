@@ -43,7 +43,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -67,16 +75,79 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddBook.aspx" />
+    <Content Include="App_Data\BooksInventory.mdf" />
+    <Content Include="App_Data\BooksInventory_log.ldf">
+      <DependentUpon>BooksInventory.mdf</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
+    <Content Include="Menu.aspx" />
+    <Content Include="Models\BooksModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BooksModel.Context.cs</LastGenOutput>
+      <DependentUpon>BooksModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\BooksModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BooksModel.edmx</DependentUpon>
+      <LastGenOutput>BooksModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="ViewBooks.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddBook.aspx.cs">
+      <DependentUpon>AddBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddBook.aspx.designer.cs">
+      <DependentUpon>AddBook.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Menu.aspx.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Menu.aspx.designer.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Book.cs">
+      <DependentUpon>BooksModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BooksModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BooksModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BooksModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BooksModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BooksModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BooksModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewBooks.aspx.cs">
+      <DependentUpon>ViewBooks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewBooks.aspx.designer.cs">
+      <DependentUpon>ViewBooks.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="Models\BooksModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BooksModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BooksModel.edmx.diagram">
+      <DependentUpon>BooksModel.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -85,9 +156,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
